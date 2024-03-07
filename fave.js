@@ -11,7 +11,7 @@ data = data || {};
                 $("input[name='favorites']").attr("checked", "checked");
             }
         });
-        $("input[name='favorites']").click(function () {
+        ("input[name='favorites']").click(function () {
             if ($(this).is(":checked")) {
             localStorage.setItem("favorite", $(this).val());
             } 
