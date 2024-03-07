@@ -77,54 +77,6 @@
 </table>
 <script src="fave.js"></script>
 <script>
-var boxes, arr;
-
-// This function loads the array and then checks the uid of each checkbox
-// against it.
-
-function checkBoxes() {
-  arr = loadBoxArray();
-  $.each($('input[type=checkbox]'), function (i, el) {
-    if (arr.indexOf(i) > -1) {
-      $(this).prop('checked', true);
-    } else {
-      $(this).prop('checked', false);
-    }
-  });
-}
-
-// If the localStorage item is available, load it into an array
-// otherwise set a default array and save it to localStorage
-
-function loadBoxArray() {
-  if (localStorage.getItem('boxes')) {
-    arr = loadBoxArray();
-  } else {
-    arr = [0, 2];
-    saveBoxArray(arr);
-  }
-}
-
-// Save the array to localStorage    
-
-function saveBoxArray(arr) {
-  localStorage.setItem('boxes', JSON.stringify(arr));
-}
-
-// On page load check the boxes found in localStorage
-
-checkBoxes();
-
-// Clicking a checkbox will update the checkbox array which is then saved to localStorage
-
-$('input[type=checkbox]').click(function () {
-  var arr = $.map($('input[type=checkbox]:checked'), function (el) {
-    return $(el).data('uid');
-  });
-  saveBoxArray(arr);
-});
-</script>
-<script>
   document.write(ger)
 </script>
 
