@@ -4,7 +4,7 @@ data = data || {};
         var fave = fave || {};
         var data = JSON.parse(localStorage.getItem("favorite"));
         data = data || {};
-        $(function () {
+        (function () {
             var data = localStorage.getItem("favorite");
 
             if (data !== null) {
