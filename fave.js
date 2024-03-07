@@ -1,21 +1,17 @@
-var fave = fave || {};
-var data = JSON.parse(localStorage.getItem("favorite"));
-data = data || {};
-        var fave = fave || {};
-        var data = JSON.parse(localStorage.getItem("favorite"));
-        data = data || {};
-        (function () {
-            var data = localStorage.getItem("favorite");
+let boxes = document.getElementsByClassName('box').length;
 
-            if (data !== null) {
-                $("input[name='favorites']").attr("checked", "checked");
-            }
-        });
-        ("input[name='favorites']").click(function () {
-            if ($(this).is(":checked")) {
-            localStorage.setItem("favorite", $(this).val());
-            } 
-            else {
-                localStorage.removeItem("favorite");
-            }
-        });
+function save() {	
+  for(let i = 1; i <= boxes; i++){
+	  var checkbox = document.getElementById(String(i));
+    localStorage.setItem("checkbox" + String(i), checkbox.checked);	
+  }
+}
+
+//for loading
+for(let i = 1; i <= boxes; i++){
+  if(localStorage.length > 0){
+    var checked = JSON.parse(localStorage.getItem("checkbox" + String(i)));
+    document.getElementById(String(i)).checked = checked;
+  }
+}
+window.addEventListener('change', save);
