@@ -11,7 +11,7 @@ function save() {
 //for loading
 for(let i = 1; i <= boxes; i++){
   if(localStorage.length > 0){
-    const checked = JSON.parse(localStorage.getItem("checkbox" + String(i)));
+    var checked = JSON.parse(localStorage.getItem("checkbox" + String(i)));
     document.getElementById(String(i)).checked = checked;
   }
 }
