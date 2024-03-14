@@ -22,7 +22,7 @@ function countChecked() {
   let completedCount = 0;
   for (const checkbox of boxs){
     if (checkbox.checked){
-      completedCount++5000;
+      completedCount+5000;
     }
   }
   completed.textContent = completedCount;
