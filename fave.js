@@ -1,4 +1,5 @@
 let boxes = document.getElementsByClassName('box').length;
+const boxs = document.getElementsByClassName('box');
 const completed = document.getElementById('completed');
 
 function save() {	
@@ -6,22 +7,26 @@ function save() {
 	  var checkbox = document.getElementById(String(i));
     localStorage.setItem("checkbox" + String(i), checkbox.checked);	
   }
+  countChecked();
 }
 
 //for loading
 for(let i = 1; i <= boxes; i++){
-  if(localStorage.length > 0){
+  if(localStorage.getItem("checkbox" + String(i)) !== null){
     var checked = JSON.parse(localStorage.getItem("checkbox" + String(i)));
     document.getElementById(String(i)).checked = checked;
   }
 }
 
-let completedcount = 0;
-for (const j of checked){
-  if (checkbox.checked){
-    completedcount++;
+function countChecked() {
+  let completedCount = 0;
+  for (const checkbox of boxs){
+    if (checkbox.checked){
+      completedCount++;
+    }
   }
+  completed.textContent = completedCount;
 }
-completed.textContent = completedcount;
 
-window.addEventListener('change', save);
+window.addEventListener('change', save);
+countChecked();
