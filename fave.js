@@ -1,45 +1,27 @@
-const checklist = document.getElementById('checklist');
-const completedTasks = document.getElementById('completed-tasks');
+let boxes = document.getElementsByClassName('box').length;
+const completed = document.getElementById('completed');
 
-// Load tasks from local storage
-const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-for (const task of savedTasks) {
-  const li = document.createElement('li');
-  const checkbox = document.createElement('input');
-  checkbox.type = 'checkbox';
-  checkbox.id = task${task.id};
-  checkbox.checked = task.completed;
-  li.appendChild(checkbox);
-  const label = document.createElement('label');
-  label.htmlFor = task${task.id};
-  label.textContent = task.text;
-  li.appendChild(label);
-  checklist.appendChild(li);
-}
-
-// Update completed tasks count
-let completedCount = 0;
-for (const task of savedTasks) {
-  if (task.completed) {
-    completedCount++;
+function save() {	
+  for(let i = 1; i <= boxes; i++){
+	  var checkbox = document.getElementById(String(i));
+    localStorage.setItem("checkbox" + String(i), checkbox.checked);	
   }
 }
-completedTasks.textContent = completedCount;
 
-// Add event listener to checkboxes
-checklist.addEventListener('change', (event) => {
-  const checkbox = event.target;
-  if (checkbox.checked) {
-    completedCount++;
-  } else {
-    completedCount--;
+//for loading
+for(let i = 1; i <= boxes; i++){
+  if(localStorage.length > 0){
+    var checked = JSON.parse(localStorage.getItem("checkbox" + String(i)));
+    document.getElementById(String(i)).checked = checked;
   }
-  completedTasks.textContent = completedCount;
+}
 
-  // Save task to local storage
-  const taskId = parseInt(checkbox.id.slice(5));
-  const taskIndex = savedTasks.findIndex((task) => task.id === taskId);
-  if (taskIndex !== -1) {
-    savedTasks[taskIndex].completed = checkbox.checked;
-  } else {
-    savedTasks.push({ id: taskId, text
+let completedcount = 0;
+for (const j of checked){
+  if (checkbox.checked){
+    completedcount++;
+  }
+}
+completed.textContent = completedcount;
+
+window.addEventListener('change', save);
