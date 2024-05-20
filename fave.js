@@ -25,7 +25,7 @@ function countChecked() {
       completedCount++;
     }
   }
-  completed.textContent = completedCount*5000;
+  completed.textContent = completedCount*7000;
 }
 
 window.addEventListener('change', save);
