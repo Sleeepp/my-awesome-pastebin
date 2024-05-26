@@ -1,6 +1,7 @@
 let boxes = document.getElementsByClassName('box').length;
 const boxs = document.getElementsByClassName('box');
-const completed = document.getElementById('completed');
+const collected = document.getElementById('collected');
+const expected = document.getElementById('expected')
 
 function save() {	
   for(let i = 1; i <= boxes; i++){
@@ -25,7 +26,8 @@ function countChecked() {
       completedCount++;
     }
   }
-  completed.textContent = completedCount*7000;
+  collected.textContent = completedCount*7000;
+  expected.textContent = boxes*7000;
 }
 
 window.addEventListener('change', save);
